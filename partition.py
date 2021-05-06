@@ -1,7 +1,3 @@
-import os
-
-os.system("clear")
-
 def inisialiseP():
     pArr = []
 
