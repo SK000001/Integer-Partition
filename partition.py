@@ -20,7 +20,6 @@ def inisialiseP():
 
     return pArr
 
-
 def parition(pArr, x, y):
     _x = x
     _y = y
