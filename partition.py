@@ -24,13 +24,8 @@ def inisialiseP():
 def parition(pArr, x, y):
     _x = x
     _y = y
-    a = 0
-    b = 1
-    xDiff = 0
-    yDiff = 1
-    temp = 0
-    sub = 0
-    count = 1
+    a = temp = sub = xDiff = 0
+    b = count = yDiff = 1
     tempArr = pArr
 
     while count > 0:
