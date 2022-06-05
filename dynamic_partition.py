@@ -4,13 +4,12 @@ def initializePXY(path, hint):
             data = f.read().split()
             if len(data) < 2:
                 f.write(hint)
-                return map(int, hint.split())
+                return list(map(int, hint.split()))
             return list(map(int, data))
     except FileNotFoundError:
-        with open("y.txt", "w") as f:
+        with open(path, "w") as f:
             f.write(hint)
-        return map(int, hint.split())
-
+        return list(map(int, hint.split()))
 
 def parition(pArr, x, y):
     a, val, sub, xDiff = -1, 0, 0, 0
@@ -57,17 +56,17 @@ def main():
     while len(p) <= n:
         try:
             val = parition(p, x, y)
-        except:
+        except IndexError:
             x[len(x):-2] = [x[-1]+1]
             y[len(y):-2] = [y[-1]+2]
-            with open("x.txt", "w") as f:
-                f.write(" ".join(map(str, x)))
-            with open("y.txt", "w") as f:
-                f.write(" ".join(map(str, y)))
+            with open("x.txt", "a") as f:
+                f.write(" " + str(x[-1]))
+            with open("y.txt", "a") as f:
+                f.write(" " + str(y[-1]))
             val = parition(p, x, y)
 
         with open("p.txt", "a") as f:
-            f.write(" " + str(val) + " ")
+            f.write(" " + str(val))
         p[len(p):-2] = [val]
 
     print("p(" + str(n) + ") = " + str(p[n]))
