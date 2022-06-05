@@ -51,6 +51,8 @@ def main():
         val = parition(p, x, y)
         p[len(p):-2] = [val]
 
+        # p.append(val)
+
     print("p(" + str(n) + ") = " + str(p[n]))
 
 main()
