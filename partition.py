@@ -2,7 +2,7 @@ def parition(pArr, x, y):
     a, val, sub, xDiff = -1, 0, 0, 0
     b, count, yDiff = 1, 1, 1
 
-    while count > 0:
+    while True:
         a += 1
         aflg, bflg = 0, 0
         if a == 4:
