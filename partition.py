@@ -9,7 +9,7 @@ def parition(pArr, x, y):
             a = -1
             continue
 
-        count = (len(pArr)-1) - sub
+        count = len(pArr) - sub - 1
         if count < 0:
             break
 
