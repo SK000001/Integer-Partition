@@ -1,7 +1,3 @@
-import os
-
-os.system("clear")
-    
 def initializePXY(path, hint):
     try:
         with open(path, "r+") as f:
