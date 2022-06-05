@@ -33,7 +33,7 @@ def main():
     x = [1, 2]
     y = [1, 3]
     while len(p) < n+1:
-        if counter % 5 == 0:
+        if counter % 6 == 0:
             x.append(x[-1]+1)
             y.append(y[-1]+2)
 
