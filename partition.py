@@ -40,12 +40,13 @@ def main():
 
     n = int(input("enter n: "))
 
-    counter, i = 1, 2
     while len(p) <= n:
-        if counter % i == 0:
+        try:
+            val = parition(p, x, y)
+        except:
             x[len(x):-2] = [x[-1]+1]
             y[len(y):-2] = [y[-1]+2]
-            i += 1
+            val = parition(p, x, y)
 
         counter += 1
         val = parition(p, x, y)
