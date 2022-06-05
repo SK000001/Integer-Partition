@@ -35,20 +35,21 @@ def parition(pArr, x, y):
 
 def main():
     p = [1, 1]
-    n = int(input("enter n: "))
-
-    counter = 1
     x = [1, 2]
     y = [1, 3]
+
+    n = int(input("enter n: "))
+
+    counter, i = 1, 2
     while len(p) < n+1:
-        l = len(p)
-        if counter % 6 == 0:
-            x.append(x[-1]+1)
-            y.append(y[-1]+2)
+        if counter % i == 0:
+            x[len(x):-2] = [x[-1]+1]
+            y[len(y):-2] = [y[-1]+2]
+            i += 1
 
         counter += 1
         val = parition(p, x, y)
-        p[l:(l-1)] = [val]
+        p[len(p):-2] = [val]
 
         # p.append(val)
 
