@@ -41,7 +41,7 @@ def main():
     n = int(input("enter n: "))
 
     counter, i = 1, 2
-    while len(p) < n+1:
+    while len(p) <= n:
         if counter % i == 0:
             x[len(x):-2] = [x[-1]+1]
             y[len(y):-2] = [y[-1]+2]
