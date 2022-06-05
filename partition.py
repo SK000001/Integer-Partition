@@ -26,14 +26,18 @@ def parition(pArr, x, y):
 
 def main():
     p = [1, 1]
+
     n = int(input("enter n: "))
 
+    counter = 1
     x = [1, 2]
     y = [1, 3]
     while len(p) < n+1:
-        x.append(x[-1]+1)
-        y.append(y[-1]+2)
+        if counter % 5 == 0:
+            x.append(x[-1]+1)
+            y.append(y[-1]+2)
 
+        counter += 1
         val = parition(p, x, y)
 
         p.append(val)
