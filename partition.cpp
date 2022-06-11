@@ -3,11 +3,10 @@
 #include <gmpxx.h>
 using namespace std;
 
-mpz_class prt(vector<mpz_class> p, vector<int> x, vector<int> y) {
+void prt(vector<mpz_class> *p, vector<int> x, vector<int> y) {
     int a = -1, sub = 0, xDiff = 0;
     int b = 1, count = 1, yDiff = 1;
     mpz_class val = 0;
-
 
     while (true) {
         a++;
@@ -18,13 +17,13 @@ mpz_class prt(vector<mpz_class> p, vector<int> x, vector<int> y) {
             continue;
         }
 
-        int count = p.size() - sub - 1;
+        int count = p->size() - sub - 1;
         if (count < 0) {
             break;
         }
 
         if (a < 2) {
-            val += p[count];
+            val += p->at(count);
             aflg = 1;
         }
 
@@ -36,7 +35,7 @@ mpz_class prt(vector<mpz_class> p, vector<int> x, vector<int> y) {
 
 
         if (aflg == 0) {
-            val -= p[count];
+            val -= p->at(count);
         }
 
         if (bflg == 0) {
@@ -46,7 +45,7 @@ mpz_class prt(vector<mpz_class> p, vector<int> x, vector<int> y) {
         b++;     
     }
 
-    return val;
+    p->push_back(val);
 }
 
 int main() {
@@ -60,14 +59,12 @@ int main() {
 
     while (p.size() <= n) {
         try {
-            val = prt(p, x, y);
+            prt(&p, x, y);
         } catch (out_of_range) {
             x.push_back(x.back()+1);
             y.push_back(y.back()+2);
-            val = prt(p, x, y);
+            prt(&p, x, y);
         }
-
-        p.push_back(val);
     }
 
     cout << "p(" << n << "): " << p.back();
