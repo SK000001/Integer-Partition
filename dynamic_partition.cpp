@@ -110,7 +110,7 @@ int main() {
 
     fp_p.close(); fp_x.close(); fp_y.close();
 
-    cout << "p(" << n << "): " << p.back();
+    cout << "p(" << n << "): " << p.at(n);
 
     return 0;
 }
