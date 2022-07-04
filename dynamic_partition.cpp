@@ -4,19 +4,6 @@
 #include <fstream>
 using namespace std;
 
-void split(string s, vector<string> *arr) {
-    string tmp = "";
-
-    for (char i: s) {
-        if (i == ' ') {
-            arr->push_back(tmp);
-            tmp = "";
-            continue;
-        }
-        tmp += i;
-    }
-}
-
 int initializePXY(fstream & fp, int *hint, vector<mpz_class> *p) {
     if (!fp) {
         cout << "file creation failed!";
