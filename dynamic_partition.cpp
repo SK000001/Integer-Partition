@@ -36,7 +36,7 @@ int initializePXY(fstream & fp, int *hint, vector<mpz_class> *p) {
     return 1;
 }
 
-void prt(vector<mpz_class> *p, vector<mpz_class> *x, vector<mpz_class> *y, fstream & fp) {
+void prt(vector<mpz_class> *p, vector<mpz_class> *x, vector<mpz_class> *y) {
     int a = -1, sub = 0, xDiff = 0, aflg;
     int b = 1, count = 1, yDiff = 1, bflg;
     mpz_class val = 0;
@@ -78,7 +78,10 @@ void prt(vector<mpz_class> *p, vector<mpz_class> *x, vector<mpz_class> *y, fstre
     }
 
     p->push_back(val);
+    fstream fp;
+    fp.open("p.txt", ios::app);
     fp << p->back() << ' ';
+    fp.close();
 }
 
 int main() {
@@ -96,15 +99,23 @@ int main() {
     vector<mpz_class> x; initializePXY(fp_x, px, &x);
     vector<mpz_class> y; initializePXY(fp_y, py, &y);
 
+    fp_p.close(); fp_x.close(); fp_y.close();
+
     while (p.size() <= n) {
         try {
-            prt(&p, &x, &y, fp_p);
+            prt(&p, &x, &y);
         } catch (out_of_range) {
+            fp_x.open("x.txt", ios::app);
             x.push_back(x.back()+1);
             fp_x << x.back() << ' ';
+            fp_x.close();
+            
+            fp_y.open("y.txt", ios::app);
             y.push_back(y.back()+2);
             fp_y << y.back() << ' ';
-            prt(&p, &x, &y, fp_p);
+            fp_y.close();
+
+            prt(&p, &x, &y);
         }
     }
 
