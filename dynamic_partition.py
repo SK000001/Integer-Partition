@@ -1,74 +1,44 @@
+import partition as pt
+    
 def initializePXY(path, hint):
     try:
-        with open(path, "r+") as f:
-            data = f.read().split()
+        with open(path, "rb+") as f:
+            data = (f.read()).decode('utf-8').split()
             if len(data) < 2:
-                f.write(hint)
+                f.write(str(hint).encode('utf-8'))
                 return list(map(int, hint.split()))
             return list(map(int, data))
     except FileNotFoundError:
-        with open(path, "w") as f:
-            f.write(hint)
+        with open(path, "wb") as f:
+            f.write(str(hint).encode('utf-8'))
         return list(map(int, hint.split()))
 
-def parition(pArr, x, y):
-    a, val, sub, xDiff = -1, 0, 0, 0
-    b, count, yDiff = 1, 1, 1
-
-    while True:
-        a += 1
-        aflg, bflg = 0, 0
-        if a == 4:
-            a = -1
-            continue
-
-        count = len(pArr) - sub - 1
-        if count < 0:
-            break
-
-        if a < 2:
-            val += pArr[count]
-            aflg = 1
-        
-        if b % 2 == 0:
-            sub += y[yDiff]
-            yDiff += 1
-            bflg = 1
-
-        if aflg == 0:
-            val -= pArr[count]
-
-        if bflg == 0:
-            sub += x[xDiff]
-            xDiff += 1
-        
-        b += 1
-
-    return val
-
 def main():
-    p = initializePXY("p.txt", "1 1")
-    x = initializePXY("x.txt", "1 2")
-    y = initializePXY("y.txt", "1 3")
-
     n = int(input("enter n: "))
+
+    p = initializePXY("p.bin", "1 1 ")
+    x = initializePXY("x.bin", "1 2 ")
+    y = initializePXY("y.bin", "1 3 ")
 
     while len(p) <= n:
         try:
-            val = parition(p, x, y)
+            val = pt.parition(p, x, y)
         except IndexError:
             x[len(x):-2] = [x[-1]+1]
             y[len(y):-2] = [y[-1]+2]
-            with open("x.txt", "a") as f:
-                f.write(" " + str(x[-1]))
-            with open("y.txt", "a") as f:
-                f.write(" " + str(y[-1]))
-            val = parition(p, x, y)
+            with open("x.bin", "ab") as f1, open("y.bin", "ab") as f2:
+                tmp = str(x[-1]) + " "
+                f1.write(tmp.encode('utf-8'))
+                tmp = str(y[-1]) + " "
+                f2.write(tmp.encode('utf-8'))
+            val = pt.parition(p, x, y)
 
-        with open("p.txt", "a") as f:
-            f.write(" " + str(val))
+        with open("p.bin", "ab") as f:
+            tmp = str(val) + " "
+            f.write(tmp.encode('utf-8'))
         p[len(p):-2] = [val]
 
-    print("p(" + str(n) + ") = " + str(p[n]))
+    print(f"p({n}) = {p[n]}")
+    print(f"\nmax: {len(p)-1}")
 
 main()
