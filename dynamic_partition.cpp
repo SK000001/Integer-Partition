@@ -79,7 +79,7 @@ void prt(vector<mpz_class> *p, vector<mpz_class> *x, vector<mpz_class> *y) {
 
     p->push_back(val);
     fstream fp;
-    fp.open("p.txt", ios::app);
+    fp.open("p.bin", ios::app);
     fp << p->back() << ' ';
     fp.close();
 }
@@ -91,9 +91,9 @@ int main() {
     int pp[] = {1, 1}, px[] = {1, 2}, py[] = {1, 3};
 
     fstream fp_p, fp_x, fp_y;
-    fp_p.open("p.txt", ios::in | ios::app);
-    fp_x.open("x.txt", ios::in | ios::app);
-    fp_y.open("y.txt", ios::in | ios::app);
+    fp_p.open("p.bin", ios::in | ios::app);
+    fp_x.open("x.bin", ios::in | ios::app);
+    fp_y.open("y.bin", ios::in | ios::app);
 
     vector<mpz_class> p; initializePXY(fp_p, pp, &p);
     vector<mpz_class> x; initializePXY(fp_x, px, &x);
@@ -105,12 +105,12 @@ int main() {
         try {
             prt(&p, &x, &y);
         } catch (out_of_range) {
-            fp_x.open("x.txt", ios::app);
+            fp_x.open("x.bin", ios::app);
             x.push_back(x.back()+1);
             fp_x << x.back() << ' ';
             fp_x.close();
             
-            fp_y.open("y.txt", ios::app);
+            fp_y.open("y.bin", ios::app);
             y.push_back(y.back()+2);
             fp_y << y.back() << ' ';
             fp_y.close();
