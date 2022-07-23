@@ -48,7 +48,6 @@ def main():
             y[len(y):-2] = [y[-1]+2]
             val = parition(p, x, y)
 
-        counter += 1
         val = parition(p, x, y)
         p[len(p):-2] = [val]
 
