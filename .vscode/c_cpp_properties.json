@@ -11,7 +11,7 @@
                 "_UNICODE"
             ],
             "configurationProvider": "ms-vscode.makefile-tools",
-            "compilerPath": ""
+            "compilerPath": "C:\\msys64\\ucrt64\\bin\\g++"
         }
     ],
     "version": 4
