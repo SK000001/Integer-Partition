@@ -25,5 +25,5 @@ prt:
 clean:
 	@del x.bin y.bin p.bin
 
-test:
+partition:
 	@powershell -Command "echo 'Lets start the partition!'; echo '1. Partition (high number = SLOW!!)'; echo '2. Dynamic Partition (Saves Each iteration, so FAST!!)'; $$input = Read-Host -Prompt 'Enter your Choice'; clear; if ($$input -eq '1') { make prt } else { make dprt }"
