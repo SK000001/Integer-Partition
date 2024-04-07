@@ -55,4 +55,5 @@ def main():
 
     print("p(" + str(n) + ") = " + str(p[n]))
 
-main()
+if __name__ == "__main__":
+    main()
